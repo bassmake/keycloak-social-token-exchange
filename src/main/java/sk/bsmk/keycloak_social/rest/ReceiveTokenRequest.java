@@ -2,13 +2,31 @@ package sk.bsmk.keycloak_social.rest;
 
 public class ReceiveTokenRequest {
 
-  private String token;
+  private String idToken;
 
-  public String getToken() {
-    return token;
+  private String accessToken;
+
+  public String getIdToken() {
+    return idToken;
   }
 
-  public void setToken(String token) {
-    this.token = token;
+  public void setIdToken(String idToken) {
+    this.idToken = idToken;
+  }
+
+  public String getAccessToken() {
+    return accessToken;
+  }
+
+  public void setAccessToken(String accessToken) {
+    this.accessToken = accessToken;
+  }
+
+  @Override
+  public String toString() {
+    return "ReceiveTokenRequest{" +
+      "idToken='" + idToken + '\'' +
+      ", accessToken='" + accessToken + '\'' +
+      '}';
   }
 }

@@ -1,8 +1,4 @@
 server.port: 9000
 
-keycloak:
-#  enabled: false
-  realm: keycloak-poc
-  ssl-required: none
-  auth-server-url: "http://localhost:8080/auth"
-  resource: todo
+logging.level.org.springframework.web: DEBUG
+logging.level.org.apache.http: DEBUG
