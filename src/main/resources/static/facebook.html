@@ -1,0 +1,63 @@
+<html lang="en">
+<head>
+
+</head>
+<body>
+
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '389742634860893',
+      cookie     : true,
+      xfbml      : true,
+      version    : 'v3.0'
+    });
+
+    FB.login(function(response) {
+      if (response.authResponse) {
+        console.log('Welcome!  Fetching your information.... ');
+        FB.api('/me', function(response) {
+          console.log('Good to see you, ' + response.name + '.');
+        });
+      } else {
+        console.log('User cancelled login or did not fully authorize.');
+      }
+    });
+
+    FB.getLoginStatus(function(response) {
+
+      console.log(response);
+
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', 'http://localhost:9000/facebook-sign-in');
+      xhr.setRequestHeader('Content-Type', 'application/json');
+      xhr.onload = function() {
+        console.log('Signed in as: ' + xhr.responseText);
+      };
+      xhr.send(JSON.stringify({"accessToken": response.authResponse.accessToken}));
+    });
+
+    FB.AppEvents.logPageView();
+
+  };
+
+  (function(d, s, id){
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "https://connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+<div>
+  <a href="/">back</a>
+</div>
+
+<fb:login-button
+  scope="public_profile,email"
+  onlogin="checkLoginState();">
+</fb:login-button>
+
+</body>
+</html>

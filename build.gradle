@@ -1,6 +1,9 @@
 plugins {
+  id "net.ltgt.apt" version "0.15"
+  id "net.ltgt.apt-idea" version "0.15"
   id 'org.springframework.boot' version '1.5.13.RELEASE'
   id 'java'
+  id 'idea'
 }
 
 group 'sk.bsmk'
@@ -13,7 +16,16 @@ repositories {
   jcenter()
 }
 
+ext {
+  immutablesVersion = '2.6.1'
+}
+
 dependencies {
+
+  compileOnly("org.immutables:value:$immutablesVersion:annotations")
+  annotationProcessor("org.immutables:value:$immutablesVersion")
+
+  compile("com.auth0:java-jwt:3.3.0")
   compile("org.springframework.boot:spring-boot-devtools")
   compile("org.springframework.boot:spring-boot-starter-web")
 
