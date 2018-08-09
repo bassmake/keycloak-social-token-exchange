@@ -1,4 +1,4 @@
 server.port: 9000
 
-logging.level.org.springframework.web: INFO
-logging.level.org.apache.http: INFO
+logging.level.org.springframework.web: DEBUG
+logging.level.org.apache.http: DEBUG
