@@ -28,18 +28,38 @@ public class TokenValidator {
     this.restTemplate = restTemplate;
   }
 
-  public void validate(String issuer, String issuerToken) {
-    log.info("Received token: {} from {}", issuerToken, issuer);
+  public void validate(String jwt) {
+    log.info("Received jwt: {}", jwt);
 
+    final MultiValueMap<String, String> data = commonValues();
+
+    data.add("subject_token", jwt);
+    data.add("subject_token_type", "urn:ietf:params:oauth:token-type:jwt");
+
+    doCall(data);
+  }
+
+  public void validate(String issuer, String accessToken) {
+    log.info("Received access token: {} from {}", accessToken, issuer);
+
+    final MultiValueMap<String, String> data = commonValues();
+
+    data.add("subject_token", accessToken);
+    data.add("subject_issuer", issuer);
+    data.add("subject_token_type", "urn:ietf:params:oauth:token-type:access_token");
+
+    doCall(data);
+  }
+
+  private MultiValueMap<String, String> commonValues() {
     final MultiValueMap<String, String> data = new LinkedMultiValueMap<>();
     data.add("client_id", "social");
     data.add("client_secret", "65b08d30-437d-4036-8626-08b0b2b35297");
-    data.add("subject_token", issuerToken);
-    data.add("subject_issuer", issuer);
-//    data.add("audience", "target-client");
     data.add("grant_type", "urn:ietf:params:oauth:grant-type:token-exchange");
-    data.add("subject_token_type", "urn:ietf:params:oauth:token-type:access_token");
+    return data;
+  }
 
+  private void doCall(MultiValueMap<String, String> data) {
     final HttpHeaders headers = new HttpHeaders();
     headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 

@@ -24,22 +24,32 @@ public class TokenReceiver {
   public void receiveGoogleToken(
     @RequestBody JsonNode request
   ) {
-    obtainToken(request, "google");
+//    exchangeJwt(request);
+    exchangeAccessToken(request, "google");
   }
 
   @PostMapping("facebook-sign-in")
   public void receiveFacebookToken(
     @RequestBody JsonNode request
   ) {
-    obtainToken(request, "facebook");
+    exchangeAccessToken(request, "facebook");
   }
 
-  private void obtainToken(JsonNode request, String issuer) {
+  private void exchangeAccessToken(JsonNode request, String issuer) {
     log.info("Received social provider: {}", request);
 
     final String accessTokenSocial = request.get("accessToken").textValue();
 
     tokenValidator.validate(issuer, accessTokenSocial);
+
+  }
+
+  private void exchangeJwt(JsonNode request) {
+    log.info("Received request: {}", request);
+
+    final String jwt = request.get("idToken").textValue();
+
+    tokenValidator.validate(jwt);
 
   }
 

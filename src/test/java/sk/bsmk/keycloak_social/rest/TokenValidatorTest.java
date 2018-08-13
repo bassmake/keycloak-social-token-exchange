@@ -1,5 +1,6 @@
 package sk.bsmk.keycloak_social.rest;
 
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,10 +16,13 @@ public class TokenValidatorTest {
   TokenValidator tokenValidator;
 
   @Test
+  @Ignore
   public void validateToken() {
 
+    final String token = "ya29.Glv0BaNhU3lvRr0z8paFyaLPQHGrOWJub5d3H0KOAgXTkd93FrnpGqZaew3LG2gK7kKLqs-IvLhTxgw9rTGbkiDKjSqZleA7CvLAYcpQj2EHHSyp3ei9aNlZAC1I";
 
-    tokenValidator.validate("google",  "abc");
+//    String token = "eyJhbGciOiJSUzI1NiIsImtpZCI6IjlhMzNiNWVkYjQ5ZDA4NjdhODY3MmQ5NTczYjFlMGQyMzc1ODg2ZTEifQ.eyJhenAiOiIxODg4NjI0MjgwMjQtOWh0Nmp1dWxrMTZzdmI5YW10YmNoc2xlYXMwOGZpZ2suYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJhdWQiOiIxODg4NjI0MjgwMjQta2Nwcjc4dm9hajVnOGkwNjVyZDZtcGQxbzhraXVxYTYuYXBwcy5nb29nbGV1c2VyY29udGVudC5jb20iLCJzdWIiOiIxMTY1OTg4NTQxMTY4NzU1Mzc4NjQiLCJlbWFpbCI6Im1pcm9zbGF2bWF0ZWpvdnNreUBnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZXhwIjoxNTMzODIxMTI3LCJpc3MiOiJodHRwczovL2FjY291bnRzLmdvb2dsZS5jb20iLCJpYXQiOjE1MzM4MTc1MjcsIm5hbWUiOiJNaXJvc2xhdiBNYXRlam92c2t5IiwicGljdHVyZSI6Imh0dHBzOi8vbGgzLmdvb2dsZXVzZXJjb250ZW50LmNvbS8tS3RqRC1nUEE2Tm8vQUFBQUFBQUFBQUkvQUFBQUFBQUFBbFEvc1dxSlFQU3QwVk0vczk2LWMvcGhvdG8uanBnIiwiZ2l2ZW5fbmFtZSI6Ik1pcm9zbGF2IiwiZmFtaWx5X25hbWUiOiJNYXRlam92c2t5IiwibG9jYWxlIjoiZW4ifQ.gZOca3RZbaKBJeGDaCm9CdA6RDxtyFhJJvEjmcjBTjPeO6LWaK7U9lbwEFAzEMbgBFbmvkDhdLv1W3rOaLqJ7zWTVWSsxJMLWGzcX-06OU7cNAvcz0RTtB-EoBI0worT7rtMnsq0RxkmurcoXQ6gRit1tadMCdBnaR4CiY35M-qZBrvofX1rxIsZe-3WpoT7oD6iUQtov-nCIuudplJbUYEWuFAcEwLdIKJvPBXkYWPUgp6lHwKk1lPLOP8OfJQxTumtjzOr1I_6rOe8sOJ4STHgD0ebygMFTkqmZtdq7aaCdl66YBCWVncCFxEPJ3uW8x7oIhq7P-A8N20gIFX4UA";
+    tokenValidator.validate("google",  token);
 
 
   }
